@@ -27,7 +27,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  List countryData = [];
+  // While data is being fteched from API, it will have some dummy data inside it
+  List countryData = List<Map>.generate(
+      5,
+      (index) => {
+            "countryInfo": {
+              "flag":
+                  "https://png.pngtree.com/png-vector/20200224/ourmid/pngtree-colorful-loading-icon-png-image_2152960.jpg"
+            },
+            "country": "Loading...",
+            "deaths": "Loading...",
+          });
+
   fetchCountryData() async {
     http.Response response = await http
         .get(Uri.parse("https://disease.sh/v3/covid-19/countries?sort=deaths"));
