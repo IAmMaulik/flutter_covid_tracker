@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covid_tracker/panels/mostAffectedCountries.dart';
 import 'package:covid_tracker/panels/worldwide.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -26,9 +27,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  List countryData = [];
+  fetchCountryData() async {
+    http.Response response = await http
+        .get(Uri.parse("https://disease.sh/v3/covid-19/countries?sort=deaths"));
+    setState(() {
+      countryData = json.decode(response.body);
+    });
+  }
+
   @override
   void initState() {
     fetchWorldData();
+    fetchCountryData();
     super.initState();
   }
 
@@ -90,6 +101,20 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             WorldwidePanel(worldData: worldData),
+            SizedBox(height: 30.0),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Most affected Countries',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            MostAffectedPanel(countryData: countryData),
           ],
         ),
       ),
