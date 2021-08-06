@@ -1,8 +1,24 @@
+import 'package:covid_tracker/panels/worldwide.dart';
 import 'package:flutter/material.dart';
 
 import 'datasource.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+// Right now this is static data but it will be fetched from API
+Map worldData = {
+  "cases": 123456,
+  "recovered": 123456,
+  "active": 123456,
+  "deaths": 123456,
+};
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +52,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Worlwide",
+                    "Worldwide",
                     style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
@@ -59,7 +75,8 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            WorldwidePanel(worldData: worldData),
           ],
         ),
       ),
