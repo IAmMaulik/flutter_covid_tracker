@@ -1,4 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
+import 'package:covid_tracker/pages/faq.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,12 +11,12 @@ class InfoPanel extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => FAQPage(),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FAQPage(),
+                ),
+              );
             },
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
