@@ -25,8 +25,8 @@ class _CountryPageState extends State<CountryPage> {
             "cases": "Loading...",
           });
   fetchCountryData() async {
-    http.Response response = await http
-        .get(Uri.parse("https://disease.sh/v3/covid-19/countries?sort=deaths"));
+    http.Response response =
+        await http.get(Uri.parse("https://disease.sh/v3/covid-19/countries"));
     setState(() {
       countryData = json.decode(response.body);
     });
@@ -70,9 +70,9 @@ class _CountryPageState extends State<CountryPage> {
                       ),
                       Image.network(
                         countryData[index]['countryInfo']['flag'],
-                        height: 60,
-                        width: 70,
-                      )
+                        height: 70,
+                        width: 80,
+                      ),
                     ],
                   ),
                 ),
@@ -80,32 +80,44 @@ class _CountryPageState extends State<CountryPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        "CONFIRMED: ${countryData[index]['cases'].toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "CONFIRMED: ${countryData[index]['cases'].toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                          ),
                         ),
                       ),
-                      Text(
-                        "ACTIVE: ${countryData[index]['active'].toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "ACTIVE: ${countryData[index]['active'].toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
                         ),
                       ),
-                      Text(
-                        "RECOVERED: ${countryData[index]['recovered'].toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "RECOVERED: ${countryData[index]['recovered'].toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
                         ),
                       ),
-                      Text(
-                        "DEATHS: ${countryData[index]['deaths'].toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800],
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "DEATHS: ${countryData[index]['deaths'].toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
                         ),
                       ),
                     ],
