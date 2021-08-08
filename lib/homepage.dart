@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covid_tracker/pages/countries.dart';
 import 'package:covid_tracker/panels/infoPanel.dart';
 import 'package:covid_tracker/panels/mostAffectedCountries.dart';
 import 'package:covid_tracker/panels/worldwide.dart';
@@ -39,7 +40,6 @@ class _HomePageState extends State<HomePage> {
             "country": "Loading...",
             "deaths": "Loading...",
           });
-
   fetchCountryData() async {
     http.Response response = await http
         .get(Uri.parse("https://disease.sh/v3/covid-19/countries?sort=deaths"));
@@ -94,18 +94,26 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: primaryBlack,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Regional',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CountryPage()));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: primaryBlack,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Regional',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -127,6 +135,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10),
             MostAffectedPanel(countryData: countryData),
+            SizedBox(height: 25),
             InfoPanel(),
             SizedBox(height: 35),
             Center(
