@@ -30,6 +30,7 @@ dependencies:
   url_launcher: ^6.0.9
   shared_preferences: ^2.0.6
   http: ^0.13.3
+  pie_chart: ^5.0.0
 
 dev_dependencies:
   flutter_test:
