@@ -5,6 +5,7 @@ import 'package:covid_tracker/panels/mostAffectedCountries.dart';
 import 'package:covid_tracker/panels/worldwide.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pie_chart/pie_chart.dart';
 import 'datasource.dart';
 
 class HomePage extends StatefulWidget {
@@ -111,6 +112,41 @@ class _HomePageState extends State<HomePage> {
               ),
               WorldwidePanel(worldData: worldData),
               SizedBox(height: 30.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Text(
+                      'Pie Chart',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              PieChart(
+                dataMap: {
+                  'Confirmed': worldData['cases'].toDouble(),
+                  'Active': worldData['recovered'].toDouble(),
+                  'Recovered': worldData['active'].toDouble(),
+                  'Deaths': worldData['deaths'].toDouble(),
+                },
+                colorList: [
+                  Colors.red,
+                  Colors.blue,
+                  Colors.green,
+                  Colors.grey[800]!,
+                ],
+                chartValuesOptions: ChartValuesOptions(
+                  decimalPlaces: 1,
+                  showChartValuesInPercentage: true,
+                  chartValueBackgroundColor: Colors.transparent,
+                ),
+              ),
+              SizedBox(height: 50.0),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 alignment: Alignment.centerLeft,
@@ -129,7 +165,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 35),
               Center(
                 child: Text(
-                  'WE ARE TOGETHER IN THIS FIGHT',
+                  'TOGETHER, WE WILL WIN',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
