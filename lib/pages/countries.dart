@@ -1,3 +1,4 @@
+import 'package:covid_tracker/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -42,9 +43,16 @@ class _CountryPageState extends State<CountryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text("Country Stats"),
-      ),
+          centerTitle: true,
+          title: Text("Country Stats"),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: Search(countryData));
+              },
+              icon: Icon(Icons.search),
+            ),
+          ]),
       body: ListView.builder(
         itemBuilder: (context, index) {
           return Container(
@@ -62,6 +70,7 @@ class _CountryPageState extends State<CountryPage> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
