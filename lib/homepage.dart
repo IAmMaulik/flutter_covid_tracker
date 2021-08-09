@@ -135,10 +135,10 @@ class _HomePageState extends State<HomePage> {
                   'Deaths': worldData['deaths'].toDouble(),
                 },
                 colorList: [
-                  Colors.red,
-                  Colors.blue,
-                  Colors.green,
-                  Colors.grey[800]!,
+                  Colors.red[300]!,
+                  Colors.blue[300]!,
+                  Colors.green[300]!,
+                  Colors.grey[500]!,
                 ],
                 chartValuesOptions: ChartValuesOptions(
                   decimalPlaces: 1,
