@@ -62,118 +62,118 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("COVID-19 TRACKER"),
-        centerTitle: true,
-      ),
-      body: RefreshIndicator(
-        onRefresh: fetchAllData,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Worldwide",
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CountryPage()));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: primaryBlack,
-                          borderRadius: BorderRadius.circular(15),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("COVID-19 TRACKER"),
+          centerTitle: true,
+        ),
+        body: RefreshIndicator(
+          onRefresh: fetchAllData,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Worldwide",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          'Regional',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CountryPage()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: primaryBlack,
+                            borderRadius: BorderRadius.circular(15),
                           ),
+                          padding: EdgeInsets.all(10),
+                          child: Text(
+                            'Regional',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                WorldwidePanel(worldData: worldData),
+                SizedBox(height: 30.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text(
+                        'Pie Chart',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              WorldwidePanel(worldData: worldData),
-              SizedBox(height: 30.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Text(
-                      'Pie Chart',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                PieChart(
+                  dataMap: {
+                    'Active': worldData['recovered'].toDouble(),
+                    'Recovered': worldData['active'].toDouble(),
+                    'Deaths': worldData['deaths'].toDouble(),
+                  },
+                  colorList: [
+                    Colors.blue[300]!,
+                    Colors.green[300]!,
+                    Colors.grey[500]!,
+                  ],
+                  chartValuesOptions: ChartValuesOptions(
+                    decimalPlaces: 1,
+                    showChartValuesInPercentage: true,
+                    chartValueBackgroundColor: Colors.transparent,
+                  ),
+                ),
+                SizedBox(height: 50.0),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Most affected Countries',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
-              ),
-              PieChart(
-                dataMap: {
-                  'Confirmed': worldData['cases'].toDouble(),
-                  'Active': worldData['recovered'].toDouble(),
-                  'Recovered': worldData['active'].toDouble(),
-                  'Deaths': worldData['deaths'].toDouble(),
-                },
-                colorList: [
-                  Colors.red[300]!,
-                  Colors.blue[300]!,
-                  Colors.green[300]!,
-                  Colors.grey[500]!,
-                ],
-                chartValuesOptions: ChartValuesOptions(
-                  decimalPlaces: 1,
-                  showChartValuesInPercentage: true,
-                  chartValueBackgroundColor: Colors.transparent,
                 ),
-              ),
-              SizedBox(height: 50.0),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Most affected Countries',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                SizedBox(height: 10),
+                MostAffectedPanel(countryData: countryData),
+                SizedBox(height: 25),
+                InfoPanel(),
+                SizedBox(height: 35),
+                Center(
+                  child: Text(
+                    'TOGETHER, WE WILL WIN',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 10),
-              MostAffectedPanel(countryData: countryData),
-              SizedBox(height: 25),
-              InfoPanel(),
-              SizedBox(height: 35),
-              Center(
-                child: Text(
-                  'TOGETHER, WE WILL WIN',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              SizedBox(height: 35)
-            ],
+                SizedBox(height: 35)
+              ],
+            ),
           ),
         ),
       ),
