@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+var indianNumberFormat = NumberFormat.simpleCurrency(
+  locale: "en_IN",
+  decimalDigits: 0,
+  name: "",
+);
 
 class Search extends SearchDelegate {
   final List countryList;
@@ -80,7 +87,7 @@ class Search extends SearchDelegate {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 2.5),
                       child: Text(
-                        "CONFIRMED: ${suggestionList[index]['cases'].toString()}",
+                        "CONFIRMED: ${indianNumberFormat.format(suggestionList[index]['cases']).toString()}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.red,
@@ -90,7 +97,7 @@ class Search extends SearchDelegate {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 2.5),
                       child: Text(
-                        "ACTIVE: ${suggestionList[index]['active'].toString()}",
+                        "ACTIVE: ${indianNumberFormat.format(suggestionList[index]['active']).toString()}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
@@ -100,7 +107,7 @@ class Search extends SearchDelegate {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 2.5),
                       child: Text(
-                        "RECOVERED: ${suggestionList[index]['recovered'].toString()}",
+                        "RECOVERED: ${indianNumberFormat.format(suggestionList[index]['recovered']).toString()}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -110,7 +117,7 @@ class Search extends SearchDelegate {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 2.5),
                       child: Text(
-                        "DEATHS: ${suggestionList[index]['deaths'].toString()}",
+                        "DEATHS: ${indianNumberFormat.format(suggestionList[index]['deaths']).toString()}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[800],

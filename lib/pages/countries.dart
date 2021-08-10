@@ -2,6 +2,13 @@ import 'package:covid_tracker/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:intl/intl.dart';
+
+var indianNumberFormat = NumberFormat.simpleCurrency(
+  locale: "en_IN",
+  decimalDigits: 0,
+  name: "",
+);
 
 class CountryPage extends StatefulWidget {
   const CountryPage({Key? key}) : super(key: key);
@@ -92,7 +99,7 @@ class _CountryPageState extends State<CountryPage> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "CONFIRMED: ${countryData[index]['cases'].toString()}",
+                          "CONFIRMED: ${indianNumberFormat.format(countryData[index]['cases']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.red,
@@ -102,7 +109,7 @@ class _CountryPageState extends State<CountryPage> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "ACTIVE: ${countryData[index]['active'].toString()}",
+                          "ACTIVE: ${indianNumberFormat.format(countryData[index]['active']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.blue,
@@ -112,7 +119,7 @@ class _CountryPageState extends State<CountryPage> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "RECOVERED: ${countryData[index]['recovered'].toString()}",
+                          "RECOVERED: ${indianNumberFormat.format(countryData[index]['recovered']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.green,
@@ -122,7 +129,7 @@ class _CountryPageState extends State<CountryPage> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "DEATHS: ${countryData[index]['deaths'].toString()}",
+                          "DEATHS: ${indianNumberFormat.format(countryData[index]['deaths']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.grey[800],

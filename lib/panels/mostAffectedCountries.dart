@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+var indianNumberFormat = NumberFormat.simpleCurrency(
+  locale: "en_IN",
+  decimalDigits: 0,
+  name: "",
+);
 
 class MostAffectedPanel extends StatelessWidget {
   final List countryData;
@@ -34,7 +41,10 @@ class MostAffectedPanel extends StatelessWidget {
                 ),
                 SizedBox(width: 30),
                 Text(
-                  'Deaths: ' + countryData[index]['deaths'].toString(),
+                  'Deaths: ' +
+                      indianNumberFormat
+                          .format(countryData[index]['deaths'])
+                          .toString(),
                   style: TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.bold,
