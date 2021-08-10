@@ -130,8 +130,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 PieChart(
                   dataMap: {
-                    'Active': worldData['recovered'].toDouble(),
-                    'Recovered': worldData['active'].toDouble(),
+                    'Active': worldData['active'].toDouble(),
+                    'Recovered': worldData['recovered'].toDouble(),
                     'Deaths': worldData['deaths'].toDouble(),
                   },
                   colorList: [
