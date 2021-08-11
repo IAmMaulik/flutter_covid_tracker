@@ -5,13 +5,6 @@ It displays the data in a beautiful UI.
 
 ### You can download the compiled apk from the [releases page](https://github.com/IAmMaulik/flutter_covid_tracker/releases)
 
-## Few Screenshots of the App
-
-![Screenshot 1](https://i.ibb.co/0B5pLhd/ss1.png)
-![Screenshot 2](https://i.ibb.co/X75K3pW/ss2.png)
-![Country Stats Page](https://i.ibb.co/1b39G9N/search1.png)
-![Seach Demo](https://i.ibb.co/vxTcj1x/search2.png)
-
 ## Features
 
 - Realtime Search
@@ -44,3 +37,11 @@ Compile
 ```bash
   $ flutter build apk
 ```
+
+## Few Screenshots of the App
+
+<img width=360 height=618 src="https://i.ibb.co/0B5pLhd/ss1.png" />
+<img width=360 height=618 src="https://i.ibb.co/X75K3pW/ss2.png" />
+<img width=360 height=618 src="https://i.ibb.co/1b39G9N/search1.png" />
+<img width=360 height=618 src="https://i.ibb.co/vxTcj1x/search2.png" />
+
