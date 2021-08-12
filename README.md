@@ -40,8 +40,7 @@ Compile
 
 ## Few Screenshots of the App
 
-<img width=360 height=618 src="https://i.ibb.co/0B5pLhd/ss1.png" />
-<img width=360 height=618 src="https://i.ibb.co/X75K3pW/ss2.png" />
-<img width=360 height=618 src="https://i.ibb.co/1b39G9N/search1.png" />
-<img width=360 height=618 src="https://i.ibb.co/vxTcj1x/search2.png" />
-
+<img src="https://i.ibb.co/jV6hCp4/Hi-Shoot-20210812-170023.png" alt="Hi-Shoot-20210812-170023" border="0">
+<img src="https://i.ibb.co/sbjTy4H/Hi-Shoot-20210812-170040.png" alt="Hi-Shoot-20210812-170040" border="0">
+<img src="https://i.ibb.co/Z1VhH5D/Hi-Shoot-20210812-170104.png" alt="Hi-Shoot-20210812-170104" border="0">
+<img src="https://i.ibb.co/6vyn8qn/Hi-Shoot-20210812-170122.png" alt="Hi-Shoot-20210812-170122" border="0">
