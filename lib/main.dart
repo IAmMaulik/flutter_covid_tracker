@@ -1,5 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/homepage.dart';
+import 'package:covid_tracker/loading.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Circular",
         primaryColor: primaryBlack,
       ),
-      home: HomePage(),
+      home: Loading(),
     );
   }
 }
