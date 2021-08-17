@@ -4,7 +4,7 @@ import 'package:covid_tracker/panels/mostAffectedCountries.dart';
 import 'package:covid_tracker/panels/worldwide.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'datasource.dart';
+import '../datasource.dart';
 // import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
