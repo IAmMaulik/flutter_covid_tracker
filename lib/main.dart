@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Circular",
         primaryColor: primaryBlack,
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.dark,
+        ),
       ),
       home: Loading(),
     );
