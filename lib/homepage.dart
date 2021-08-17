@@ -1,23 +1,20 @@
 import 'package:covid_tracker/pages/countries.dart';
 import 'package:covid_tracker/panels/infoPanel.dart';
+import 'package:covid_tracker/panels/mostAffectedCountries.dart';
 import 'package:covid_tracker/panels/worldwide.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'datasource.dart';
+// import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
   final Map worldData;
-
-  const HomePage({Key? key, required this.worldData}) : super(key: key);
-
-  // List countryData = [];
-  // fetchCountryData() async {
-  //   http.Response response = await http
-  //       .get(Uri.parse("https://disease.sh/v3/covid-19/countries?sort=deaths"));
-  //   setState(() {
-  //     countryData = json.decode(response.body);
-  //   });
-  // }
+  final List countryData;
+  const HomePage({
+    Key? key,
+    required this.worldData,
+    required this.countryData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,20 +65,16 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Text(
-                      'Pie Chart',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+              SizedBox(height: 30.0),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text(
+                  'Pie Chart',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
+                ),
               ),
               PieChart(
                 dataMap: {
@@ -102,8 +95,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 50.0),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
                 child: Text(
                   'Most affected Countries',
                   style: TextStyle(
@@ -113,7 +105,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              // MostAffectedPanel(countryData: countryData),
+              MostAffectedPanel(countryData: countryData),
               SizedBox(height: 25),
               InfoPanel(),
               SizedBox(height: 35),

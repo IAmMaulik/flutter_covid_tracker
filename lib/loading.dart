@@ -13,22 +13,31 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  Map worldData = {};
-  void fetchWorldData() async {
-    http.Response response =
+  void fetchAllData() async {
+    Map worldData = {};
+    http.Response worldDataResponse =
         await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
-    worldData = jsonDecode(response.body);
+    worldData = jsonDecode(worldDataResponse.body);
+
+    List countryData = [];
+    http.Response countryDeathDataResponse = await http
+        .get(Uri.parse("https://disease.sh/v3/covid-19/countries?sort=deaths"));
+    countryData = json.decode(countryDeathDataResponse.body);
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(worldData: worldData),
+        builder: (context) => HomePage(
+          worldData: worldData,
+          countryData: countryData,
+        ),
       ),
     );
   }
 
   @override
   void initState() {
-    fetchWorldData();
+    fetchAllData();
     super.initState();
   }
 

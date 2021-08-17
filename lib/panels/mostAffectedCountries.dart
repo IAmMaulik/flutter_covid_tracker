@@ -23,8 +23,9 @@ class MostAffectedPanel extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 7),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Image.network(
                   countryData[index]['countryInfo']['flag'],
