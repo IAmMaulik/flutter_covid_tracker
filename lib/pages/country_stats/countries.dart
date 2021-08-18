@@ -1,4 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
+import 'package:covid_tracker/pages/country/country.dart';
 import 'package:covid_tracker/pages/country_stats/search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -55,84 +56,97 @@ class _CountryPageState extends State<CountryPage> {
             ))
           : ListView.builder(
               itemBuilder: (context, index) {
-                return Container(
-                  height: 130,
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey[100]!,
-                      blurRadius: 10,
-                      offset: Offset(0, 10),
-                    ),
-                  ]),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              countryData[index]['country'],
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Image.network(
-                              countryData[index]['countryInfo']['flag'],
-                              height: 70,
-                              width: 80,
-                            ),
-                          ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Country(
+                          countryiso3: countryData[index]['countryInfo']
+                              ['iso3'],
                         ),
                       ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 2.5),
-                              child: Text(
-                                "CONFIRMED: ${indianNumberFormat.format(countryData[index]['cases']).toString()}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red,
-                                ),
+                    );
+                  },
+                  child: Container(
+                    height: 130,
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey[100]!,
+                        blurRadius: 10,
+                        offset: Offset(0, 10),
+                      ),
+                    ]),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                countryData[index]['country'],
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 2.5),
-                              child: Text(
-                                "ACTIVE: ${indianNumberFormat.format(countryData[index]['active']).toString()}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
-                                ),
+                              Image.network(
+                                countryData[index]['countryInfo']['flag'],
+                                height: 70,
+                                width: 80,
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 2.5),
-                              child: Text(
-                                "RECOVERED: ${indianNumberFormat.format(countryData[index]['recovered']).toString()}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 2.5),
-                              child: Text(
-                                "DEATHS: ${indianNumberFormat.format(countryData[index]['deaths']).toString()}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey[800],
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      )
-                    ],
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 2.5),
+                                child: Text(
+                                  "CONFIRMED: ${indianNumberFormat.format(countryData[index]['cases']).toString()}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 2.5),
+                                child: Text(
+                                  "ACTIVE: ${indianNumberFormat.format(countryData[index]['active']).toString()}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 2.5),
+                                child: Text(
+                                  "RECOVERED: ${indianNumberFormat.format(countryData[index]['recovered']).toString()}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 2.5),
+                                child: Text(
+                                  "DEATHS: ${indianNumberFormat.format(countryData[index]['deaths']).toString()}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey[800],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
