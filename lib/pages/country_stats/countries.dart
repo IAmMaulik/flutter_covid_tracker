@@ -1,5 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/pages/search.dart';
+import 'package:covid_tracker/pages/country_stats/search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

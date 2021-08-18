@@ -1,5 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/pages/faq.dart';
+import 'package:covid_tracker/pages/faq/faq.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

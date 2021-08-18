@@ -1,4 +1,4 @@
-import 'package:covid_tracker/pages/countries.dart';
+import 'package:covid_tracker/pages/country_stats/countries.dart';
 import 'package:covid_tracker/panels/infoPanel.dart';
 import 'package:covid_tracker/panels/mostAffectedCountries.dart';
 import 'package:covid_tracker/panels/worldwide.dart';
