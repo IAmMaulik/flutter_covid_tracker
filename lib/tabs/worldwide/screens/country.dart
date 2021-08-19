@@ -51,10 +51,7 @@ class _CountryState extends State<Country> {
       ),
       body: Center(
         child: countryData.length == 0
-            ? Center(
-                child: CircularProgressIndicator(
-                color: primaryBlack,
-              ))
+            ? Center(child: CircularProgressIndicator())
             : Container(
                 child: Column(
                   children: <Widget>[
