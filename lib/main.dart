@@ -1,5 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/loading.dart';
+import 'package:covid_tracker/tabs/worldwide/worldwideScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: Loading(),
+      home: HomePage(),
     );
   }
 }

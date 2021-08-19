@@ -50,10 +50,7 @@ class _CountryPageState extends State<CountryPage> {
             ),
           ]),
       body: countryData.length == 0
-          ? Center(
-              child: CircularProgressIndicator(
-              color: primaryBlack,
-            ))
+          ? Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemBuilder: (context, index) {
                 return GestureDetector(
