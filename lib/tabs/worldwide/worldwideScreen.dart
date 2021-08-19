@@ -37,12 +37,8 @@ class _WorldHomePageState extends State<WorldHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("COVID-19 TRACKER"),
-        centerTitle: true,
-      ),
-      body: countryData.length == 0 && worldData.length == 0
+    return Container(
+      child: countryData.length == 0 && worldData.isEmpty == true
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Column(
