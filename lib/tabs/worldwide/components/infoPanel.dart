@@ -59,12 +59,13 @@ class InfoPanel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    'DONATE',
+                    'DONATE   (to WHO)',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
+                    softWrap: true,
                   ),
                   Icon(
                     Icons.arrow_forward,
@@ -90,12 +91,13 @@ class InfoPanel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    'MYTH BUSTERS',
+                    'MYTH BUSTERS   (from WHO)',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
+                    softWrap: true,
                   ),
                   Icon(
                     Icons.arrow_forward,

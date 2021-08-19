@@ -127,16 +127,6 @@ class _WorldHomePageState extends State<WorldHomePage> {
                   SizedBox(height: 25),
                   InfoPanel(),
                   SizedBox(height: 35),
-                  Center(
-                    child: Text(
-                      'TOGETHER, WE WILL WIN',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 35)
                 ],
               ),
             ),
