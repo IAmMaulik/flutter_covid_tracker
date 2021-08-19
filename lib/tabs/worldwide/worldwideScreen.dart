@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pie_chart/pie_chart.dart';
 
-class HomePage extends StatefulWidget {
+class WorldHomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WorldHomePageState createState() => _WorldHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WorldHomePageState extends State<WorldHomePage> {
   List countryData = [];
   Map worldData = {};
   void fetchAllData() async {
