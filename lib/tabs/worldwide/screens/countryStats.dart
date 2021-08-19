@@ -1,4 +1,3 @@
-import 'package:covid_tracker/datasource.dart';
 import 'package:covid_tracker/tabs/worldwide/screens/country.dart';
 import 'package:covid_tracker/tabs/worldwide/components/search.dart';
 import 'package:flutter/material.dart';

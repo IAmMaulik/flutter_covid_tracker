@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../../../../datasource.dart';
 
 class Country extends StatefulWidget {
   final String countryiso3;
@@ -124,6 +123,12 @@ class _CountryState extends State<Country> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 50),
+                    Text(
+                      "GRAPH HERE",
+                      style: TextStyle(fontSize: 60),
+                      softWrap: true,
+                    )
                   ],
                 ),
               ),
