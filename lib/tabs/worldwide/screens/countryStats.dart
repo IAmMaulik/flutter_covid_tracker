@@ -1,6 +1,6 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/pages/country/country.dart';
-import 'package:covid_tracker/pages/country_stats/search.dart';
+import 'package:covid_tracker/tabs/worldwide/screens/country.dart';
+import 'package:covid_tracker/tabs/worldwide/components/search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -64,6 +64,15 @@ class _CountryPageState extends State<CountryPage> {
                         builder: (context) => Country(
                           countryiso3: countryData[index]['countryInfo']
                               ['iso3'],
+                          flag: countryData[index]['countryInfo']['flag'],
+                          totalCases: indianNumberFormat
+                              .format(countryData[index]['cases']),
+                          totalDeaths: indianNumberFormat
+                              .format(countryData[index]['deaths']),
+                          totalRecovered: indianNumberFormat
+                              .format(countryData[index]['recovered']),
+                          totalActive: indianNumberFormat
+                              .format(countryData[index]['active']),
                         ),
                       ),
                     );

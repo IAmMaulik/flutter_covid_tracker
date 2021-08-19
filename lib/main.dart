@@ -1,5 +1,5 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/pages/loading.dart';
+import 'package:covid_tracker/loading.dart';
 import 'package:flutter/material.dart';
 
 void main() {
