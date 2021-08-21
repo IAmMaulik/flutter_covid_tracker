@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:covid_tracker/tabs/worldwide/screens/countryStats.dart';
-import 'package:covid_tracker/tabs/worldwide/components/infoPanel.dart';
 import 'package:covid_tracker/tabs/worldwide/components/mostAffectedCountries.dart';
 import 'package:covid_tracker/tabs/worldwide/components/worldwidePanel.dart';
 import 'package:flutter/material.dart';
@@ -123,9 +122,9 @@ class _WorldHomePageState extends State<WorldHomePage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  MostAffectedPanel(countryData: countryData),
-                  SizedBox(height: 25),
-                  InfoPanel(),
+                  countryData.length == 0
+                      ? Center(child: CircularProgressIndicator())
+                      : MostAffectedPanel(countryData: countryData),
                   SizedBox(height: 35),
                 ],
               ),
