@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
               label: "India",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.public),
               label: "World",
             ),
             BottomNavigationBarItem(

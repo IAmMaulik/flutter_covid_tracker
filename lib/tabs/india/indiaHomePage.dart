@@ -10,7 +10,10 @@ class _IndiaHomePageState extends State<IndiaHomePage> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("INDIA PAGE"),
+        child: Text(
+          "INDIA PAGE (Coming Soon)",
+          softWrap: true,
+        ),
       ),
     );
   }

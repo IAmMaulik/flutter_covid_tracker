@@ -4,6 +4,7 @@ import 'package:covid_tracker/tabs/worldwide/components/mostAffectedCountries.da
 import 'package:covid_tracker/tabs/worldwide/components/worldwidePanel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class WorldHomePage extends StatefulWidget {
@@ -43,14 +44,22 @@ class _WorldHomePageState extends State<WorldHomePage> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 10.0),
-                    child: Row(
+                    padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           "Worldwide",
                           style: TextStyle(
                             fontSize: 22.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 6),
+                        Text(
+                          "(Last Updated: ${DateFormat('dd/MM/yyyy').format(DateTime.now())})",
+                          style: TextStyle(
+                            fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
