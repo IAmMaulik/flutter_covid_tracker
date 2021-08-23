@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:ui';
+import 'package:covid_tracker/datasource.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,22 +56,36 @@ class _CountryState extends State<Country> {
             : Container(
                 child: Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Image.network(
-                          widget.flag,
-                          height: 160,
-                          width: 140,
-                        ),
-                        Text(
-                          countryData['country'],
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
+                    Container(
+                      margin: EdgeInsets.all(25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 5,
+                                color: primaryBlack,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Image.network(widget.flag),
+                            width: MediaQuery.of(context).size.width / 3,
                           ),
-                        ),
-                      ],
+                          Container(
+                            child: Text(
+                              countryData['country'],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              softWrap: true,
+                            ),
+                            width: MediaQuery.of(context).size.width / 2,
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(25.0),

@@ -1,3 +1,4 @@
+import 'package:covid_tracker/tabs/worldwide/screens/country.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -50,84 +51,105 @@ class Search extends SearchDelegate {
 
     return ListView.builder(
       itemBuilder: (context, index) {
-        return Container(
-          height: 130,
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          decoration: BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(
-              color: Colors.grey[100]!,
-              blurRadius: 10,
-              offset: Offset(0, 10),
-            ),
-          ]),
-          child: Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      suggestionList[index]['country'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Image.network(
-                      suggestionList[index]['countryInfo']['flag'],
-                      height: 70,
-                      width: 80,
-                    ),
-                  ],
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Country(
+                  countryiso3: suggestionList[index]['countryInfo']['iso3'],
+                  flag: suggestionList[index]['countryInfo']['flag'],
+                  totalCases:
+                      indianNumberFormat.format(suggestionList[index]['cases']),
+                  totalDeaths: indianNumberFormat
+                      .format(suggestionList[index]['deaths']),
+                  totalRecovered: indianNumberFormat
+                      .format(suggestionList[index]['recovered']),
+                  totalActive: indianNumberFormat
+                      .format(suggestionList[index]['active']),
                 ),
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 2.5),
-                      child: Text(
-                        "CONFIRMED: ${indianNumberFormat.format(suggestionList[index]['cases']).toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
-                        ),
+            );
+          },
+          child: Container(
+            height: 130,
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey[100]!,
+                blurRadius: 10,
+                offset: Offset(0, 10),
+              ),
+            ]),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        suggestionList[index]['country'],
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 2.5),
-                      child: Text(
-                        "ACTIVE: ${indianNumberFormat.format(suggestionList[index]['active']).toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
+                      Image.network(
+                        suggestionList[index]['countryInfo']['flag'],
+                        height: 70,
+                        width: 80,
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 2.5),
-                      child: Text(
-                        "RECOVERED: ${indianNumberFormat.format(suggestionList[index]['recovered']).toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 2.5),
-                      child: Text(
-                        "DEATHS: ${indianNumberFormat.format(suggestionList[index]['deaths']).toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )
-            ],
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "CONFIRMED: ${indianNumberFormat.format(suggestionList[index]['cases']).toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "ACTIVE: ${indianNumberFormat.format(suggestionList[index]['active']).toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "RECOVERED: ${indianNumberFormat.format(suggestionList[index]['recovered']).toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 2.5),
+                        child: Text(
+                          "DEATHS: ${indianNumberFormat.format(suggestionList[index]['deaths']).toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },
