@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+import '../../../datasource.dart';
+
 var indianNumberFormat = NumberFormat.simpleCurrency(
   locale: "en_IN",
   decimalDigits: 0,
@@ -95,10 +97,20 @@ class _CountryPageState extends State<CountryPage> {
                                 countryData[index]['country'],
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              Image.network(
-                                countryData[index]['countryInfo']['flag'],
-                                height: 70,
-                                width: 80,
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 5,
+                                    color: primaryBlack,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Image.network(
+                                  countryData[index]['countryInfo']['flag'],
+                                  width:
+                                      MediaQuery.of(context).size.width / 4.5,
+                                ),
                               ),
                             ],
                           ),

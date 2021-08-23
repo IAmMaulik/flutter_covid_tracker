@@ -2,6 +2,8 @@ import 'package:covid_tracker/tabs/worldwide/screens/country.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../datasource.dart';
+
 var indianNumberFormat = NumberFormat.simpleCurrency(
   locale: "en_IN",
   decimalDigits: 0,
@@ -93,10 +95,19 @@ class Search extends SearchDelegate {
                         suggestionList[index]['country'],
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Image.network(
-                        suggestionList[index]['countryInfo']['flag'],
-                        height: 70,
-                        width: 80,
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 5,
+                            color: primaryBlack,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Image.network(
+                          suggestionList[index]['countryInfo']['flag'],
+                          width: MediaQuery.of(context).size.width / 4.5,
+                        ),
                       ),
                     ],
                   ),
