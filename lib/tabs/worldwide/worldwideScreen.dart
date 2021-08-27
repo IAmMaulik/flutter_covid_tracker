@@ -77,17 +77,17 @@ class _WorldHomePageState extends State<WorldHomePage> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.red[500],
-                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.black,
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        'Country Wise Data',
+                        'SELECT YOUR COUNTRY',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
+                        softWrap: true,
                       ),
                     ),
                   ),
