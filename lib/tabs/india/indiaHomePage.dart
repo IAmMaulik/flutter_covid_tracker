@@ -1,6 +1,7 @@
+import 'package:covid_tracker/tabs/india/components/casesPanel.dart';
+import 'package:covid_tracker/tabs/india/components/graph.dart';
 import 'package:covid_tracker/tabs/india/components/imageAndText.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class IndiaHomePage extends StatefulWidget {
   @override
@@ -10,9 +11,18 @@ class IndiaHomePage extends StatefulWidget {
 class _IndiaHomePageState extends State<IndiaHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: <Widget>[
         ImageAndText(),
+        Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 150),
+              child: CasesPanel(),
+            ),
+            Graph(),
+          ],
+        ),
       ],
     );
   }
