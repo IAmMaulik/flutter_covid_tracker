@@ -10,6 +10,7 @@ class InfoPage extends StatelessWidget {
       children: <Widget>[
         Donate(),
         Mythbusters(),
+        SizedBox(height: 20),
         FAQs(),
       ],
     );

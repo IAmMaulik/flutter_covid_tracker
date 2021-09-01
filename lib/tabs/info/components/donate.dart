@@ -11,7 +11,7 @@ class Donate extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         decoration: BoxDecoration(
           color: primaryBlack,
           borderRadius: BorderRadius.circular(15.0),
