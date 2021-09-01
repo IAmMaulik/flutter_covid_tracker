@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:covid_tracker/tabs/worldwide/screens/countryStats.dart';
+import 'package:covid_tracker/tabs/worldwide/screens/country_stats/countryStats.dart';
 import 'package:covid_tracker/tabs/worldwide/components/mostAffectedCountries.dart';
 import 'package:covid_tracker/tabs/worldwide/components/worldwidePanel.dart';
 import 'package:flutter/material.dart';

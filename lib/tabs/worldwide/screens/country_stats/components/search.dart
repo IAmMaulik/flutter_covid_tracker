@@ -1,14 +1,9 @@
-import 'package:covid_tracker/tabs/worldwide/screens/country.dart';
+import 'package:covid_tracker/tabs/worldwide/screens/country/country.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import '../../../../../datasource.dart';
+import '../../../../../util.dart';
 
-import '../../../datasource.dart';
-
-var indianNumberFormat = NumberFormat.simpleCurrency(
-  locale: "en_IN",
-  decimalDigits: 0,
-  name: "",
-);
+var util = Util();
 
 class Search extends SearchDelegate {
   final List countryList;
@@ -61,13 +56,13 @@ class Search extends SearchDelegate {
                 builder: (context) => Country(
                   countryiso3: suggestionList[index]['countryInfo']['iso3'],
                   flag: suggestionList[index]['countryInfo']['flag'],
-                  totalCases:
-                      indianNumberFormat.format(suggestionList[index]['cases']),
-                  totalDeaths: indianNumberFormat
+                  totalCases: util.indianNumberFormat
+                      .format(suggestionList[index]['cases']),
+                  totalDeaths: util.indianNumberFormat
                       .format(suggestionList[index]['deaths']),
-                  totalRecovered: indianNumberFormat
+                  totalRecovered: util.indianNumberFormat
                       .format(suggestionList[index]['recovered']),
-                  totalActive: indianNumberFormat
+                  totalActive: util.indianNumberFormat
                       .format(suggestionList[index]['active']),
                 ),
               ),
@@ -119,7 +114,7 @@ class Search extends SearchDelegate {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "CONFIRMED: ${indianNumberFormat.format(suggestionList[index]['cases']).toString()}",
+                          "CONFIRMED: ${util.indianNumberFormat.format(suggestionList[index]['cases']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.red,
@@ -129,7 +124,7 @@ class Search extends SearchDelegate {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "ACTIVE: ${indianNumberFormat.format(suggestionList[index]['active']).toString()}",
+                          "ACTIVE: ${util.indianNumberFormat.format(suggestionList[index]['active']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.blue,
@@ -139,7 +134,7 @@ class Search extends SearchDelegate {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "RECOVERED: ${indianNumberFormat.format(suggestionList[index]['recovered']).toString()}",
+                          "RECOVERED: ${util.indianNumberFormat.format(suggestionList[index]['recovered']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.green,
@@ -149,7 +144,7 @@ class Search extends SearchDelegate {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 2.5),
                         child: Text(
-                          "DEATHS: ${indianNumberFormat.format(suggestionList[index]['deaths']).toString()}",
+                          "DEATHS: ${util.indianNumberFormat.format(suggestionList[index]['deaths']).toString()}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.grey[800],

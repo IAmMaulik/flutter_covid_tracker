@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import '../../../util.dart';
 
-var indianNumberFormat = NumberFormat.simpleCurrency(
-  locale: "en_IN",
-  decimalDigits: 0,
-  name: "",
-);
+var util = Util();
 
 class CasesPanel extends StatelessWidget {
   @override
@@ -23,25 +19,25 @@ class CasesPanel extends StatelessWidget {
             title: 'CONFIRMED',
             panelColor: Colors.red[100]!,
             textColor: Colors.red,
-            count: indianNumberFormat.format(12344423).toString(),
+            count: util.indianNumberFormat.format(12344423).toString(),
           ),
           StatusPanel(
             title: 'ACTIVE',
             panelColor: Colors.blue[100]!,
             textColor: Colors.blue[900]!,
-            count: indianNumberFormat.format(12344423).toString(),
+            count: util.indianNumberFormat.format(12344423).toString(),
           ),
           StatusPanel(
             title: 'RECOVERED',
             panelColor: Colors.green[100]!,
             textColor: Colors.green,
-            count: indianNumberFormat.format(12344423).toString(),
+            count: util.indianNumberFormat.format(12344423).toString(),
           ),
           StatusPanel(
             title: 'DEATHS',
             panelColor: Colors.grey[400]!,
             textColor: Colors.grey[900]!,
-            count: indianNumberFormat.format(12344423).toString(),
+            count: util.indianNumberFormat.format(12344423).toString(),
           ),
         ],
       ),

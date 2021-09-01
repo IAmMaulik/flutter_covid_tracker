@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:covid_tracker/util.dart';
 
-var indianNumberFormat = NumberFormat.simpleCurrency(
-  locale: "en_IN",
-  decimalDigits: 0,
-  name: "",
-);
+var util = Util();
 
 class WorldwidePanel extends StatelessWidget {
   final Map worldData;
@@ -30,25 +26,30 @@ class WorldwidePanel extends StatelessWidget {
             title: 'CONFIRMED',
             panelColor: Colors.red[100]!,
             textColor: Colors.red,
-            count: indianNumberFormat.format(worldData['cases']).toString(),
+            count:
+                util.indianNumberFormat.format(worldData['cases']).toString(),
           ),
           StatusPanel(
             title: 'ACTIVE',
             panelColor: Colors.blue[100]!,
             textColor: Colors.blue[900]!,
-            count: indianNumberFormat.format(worldData['active']).toString(),
+            count:
+                util.indianNumberFormat.format(worldData['active']).toString(),
           ),
           StatusPanel(
             title: 'RECOVERED',
             panelColor: Colors.green[100]!,
             textColor: Colors.green,
-            count: indianNumberFormat.format(worldData['recovered']).toString(),
+            count: util.indianNumberFormat
+                .format(worldData['recovered'])
+                .toString(),
           ),
           StatusPanel(
             title: 'DEATHS',
             panelColor: Colors.grey[400]!,
             textColor: Colors.grey[900]!,
-            count: indianNumberFormat.format(worldData['deaths']).toString(),
+            count:
+                util.indianNumberFormat.format(worldData['deaths']).toString(),
           ),
         ],
       ),
