@@ -1,5 +1,4 @@
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/tabs/india/indiaHomePage.dart';
 import 'package:covid_tracker/tabs/info/infoPageHome.dart';
 import 'package:covid_tracker/tabs/states/stateScreen.dart';
 import 'package:covid_tracker/tabs/worldwide/worldwideScreen.dart';
@@ -17,18 +16,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // Used for the Botton Navigation Bar
   int _selectedIndex = 0;
-  List<Widget> _widgetList = [
-    IndiaHomePage(),
-    StateScreen(),
-    WorldHomePage(),
-    InfoPage()
-  ];
-  List<String> _appBarNames = [
-    "INDIA",
-    "STATES",
-    "WORLDWIDE",
-    "INFORMATION (from WHO)"
-  ];
+  List<Widget> _widgetList = [WorldHomePage(), StateScreen(), InfoPage()];
+  List<String> _appBarNames = ["Worldwide", "India", "INFORMATION (from WHO)"];
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -59,16 +48,12 @@ class _MyAppState extends State<MyApp> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.flag),
-              label: "India",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.apartment),
-              label: "States",
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.public),
               label: "World",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.flag),
+              label: "India",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.question_answer),
