@@ -1,7 +1,7 @@
-import 'package:covid_tracker/tabs/worldwide/screens/country/country.dart';
+import 'package:covid_tracker/tabs/country_stats/screens/country.dart';
 import 'package:flutter/material.dart';
-import '../../../../../datasource.dart';
-import '../../../../../util.dart';
+import '../../../datasource.dart';
+import '../../../util.dart';
 
 var util = Util();
 
@@ -94,7 +94,7 @@ class Search extends SearchDelegate {
                         margin: EdgeInsets.only(top: 10),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            width: 5,
+                            width: 3.5,
                             color: primaryBlack,
                           ),
                           borderRadius: BorderRadius.circular(5),

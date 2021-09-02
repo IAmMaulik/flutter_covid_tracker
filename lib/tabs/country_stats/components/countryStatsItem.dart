@@ -1,6 +1,6 @@
 import 'package:covid_tracker/util.dart';
 import 'package:flutter/material.dart';
-import '../../../../../datasource.dart';
+import '../../../datasource.dart';
 
 var util = Util();
 
@@ -45,7 +45,7 @@ class CountryStatsItem extends StatelessWidget {
                   margin: EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      width: 5,
+                      width: 3.5,
                       color: primaryBlack,
                     ),
                     borderRadius: BorderRadius.circular(5),

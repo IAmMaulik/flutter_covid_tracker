@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:covid_tracker/tabs/worldwide/components/imageAndText.dart';
-import 'package:covid_tracker/tabs/worldwide/screens/country_stats/countryStats.dart';
 import 'package:covid_tracker/tabs/worldwide/components/mostAffectedCountries.dart';
 import 'package:covid_tracker/tabs/worldwide/components/worldwidePanel.dart';
 import 'package:flutter/material.dart';
@@ -49,30 +48,6 @@ class _WorldHomePageState extends State<WorldHomePage> {
                       Container(
                         margin: EdgeInsets.only(top: 150),
                         child: WorldwidePanel(worldData: worldData),
-                      ),
-                      SizedBox(height: 30.0),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CountryPage()));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                          ),
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            'SELECT YOUR COUNTRY',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            softWrap: true,
-                          ),
-                        ),
                       ),
                       SizedBox(height: 30.0),
                       Padding(
