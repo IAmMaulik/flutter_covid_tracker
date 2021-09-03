@@ -28,6 +28,9 @@ class WorldwidePanel extends StatelessWidget {
             textColor: Colors.red,
             count:
                 util.indianNumberFormat.format(worldData['cases']).toString(),
+            today: util.indianNumberFormat
+                .format(worldData['todayCases'])
+                .toString(),
           ),
           StatusPanel(
             title: 'ACTIVE',
@@ -43,6 +46,9 @@ class WorldwidePanel extends StatelessWidget {
             count: util.indianNumberFormat
                 .format(worldData['recovered'])
                 .toString(),
+            today: util.indianNumberFormat
+                .format(worldData['todayRecovered'])
+                .toString(),
           ),
           StatusPanel(
             title: 'DEATHS',
@@ -50,6 +56,9 @@ class WorldwidePanel extends StatelessWidget {
             textColor: Colors.grey[900]!,
             count:
                 util.indianNumberFormat.format(worldData['deaths']).toString(),
+            today: util.indianNumberFormat
+                .format(worldData['todayDeaths'])
+                .toString(),
           ),
         ],
       ),
@@ -62,6 +71,7 @@ class StatusPanel extends StatelessWidget {
   final Color textColor;
   final String title;
   final String count;
+  final String today;
 
   const StatusPanel({
     Key? key,
@@ -69,6 +79,7 @@ class StatusPanel extends StatelessWidget {
     required this.textColor,
     required this.title,
     required this.count,
+    this.today = "",
   }) : super(key: key);
 
   @override
@@ -94,6 +105,7 @@ class StatusPanel extends StatelessWidget {
               color: textColor,
             ),
           ),
+          SizedBox(height: 4),
           Text(
             count,
             style: TextStyle(
@@ -101,7 +113,17 @@ class StatusPanel extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: textColor,
             ),
-          )
+          ),
+          today == ""
+              ? SizedBox()
+              : Text(
+                  '(+ $today)',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
+                ),
         ],
       ),
     );
