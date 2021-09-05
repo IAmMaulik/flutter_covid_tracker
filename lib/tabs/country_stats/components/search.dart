@@ -64,6 +64,7 @@ class Search extends SearchDelegate {
                       .format(suggestionList[index]['recovered']),
                   totalActive: util.indianNumberFormat
                       .format(suggestionList[index]['active']),
+                  countryName: suggestionList[index]['country'],
                 ),
               ),
             );

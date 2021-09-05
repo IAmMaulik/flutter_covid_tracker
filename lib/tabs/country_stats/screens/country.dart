@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:covid_tracker/datasource.dart';
 import 'package:covid_tracker/tabs/country_stats/screens/casesPanel.dart';
+import 'package:covid_tracker/tabs/country_stats/screens/graph.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,6 +14,7 @@ class Country extends StatefulWidget {
   final String totalRecovered;
   final String totalActive;
   final String totalDeaths;
+  final String countryName;
 
   const Country({
     Key? key,
@@ -21,6 +24,7 @@ class Country extends StatefulWidget {
     required this.totalRecovered,
     required this.totalActive,
     required this.totalDeaths,
+    required this.countryName,
   }) : super(key: key);
 
   @override
@@ -47,26 +51,38 @@ class _CountryState extends State<Country> {
   Widget build(BuildContext context) {
     getTodayValues(String type) {
       // Takes today's values and subtracts yesterday' values to get daily cases
-      return countryData.length == 0
-          ? 0
-          : countryData['timeline']['$type'][countryData['timeline']['$type']
-                  .keys
-                  .elementAt(
-                      countryData['timeline']["$type"].keys.length - 1)] -
-              countryData['timeline']["$type"][countryData['timeline']['$type']
-                  .keys
-                  .elementAt(countryData['timeline']['$type'].keys.length - 2)];
+
+      if (countryData.length == 0 || countryData['message'] != null) {
+        return 0;
+      } else {
+        int todayTotalCases = countryData['timeline']['$type'][
+            countryData['timeline']['$type']
+                .keys
+                .elementAt(countryData['timeline']["$type"].keys.length - 1)];
+        int yesterdayTotalCases = countryData['timeline']["$type"][
+            countryData['timeline']['$type']
+                .keys
+                .elementAt(countryData['timeline']['$type'].keys.length - 2)];
+
+        return todayTotalCases - yesterdayTotalCases;
+      }
     }
 
-    int todayCases = getTodayValues("cases");
-    int todayRecovered = getTodayValues("recovered");
-    int todayDeaths = getTodayValues("deaths");
+    int todayCases = 0;
+    int todayRecovered = 0;
+    int todayDeaths = 0;
+
+    if (countryData.length != 0) {
+      todayCases = getTodayValues("cases");
+      todayRecovered = getTodayValues("recovered");
+      todayDeaths = getTodayValues("deaths");
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: countryData.length == 0
             ? Text("Loading...")
-            : Text(countryData['country']),
+            : Text(widget.countryName),
         centerTitle: true,
       ),
       body: Center(
@@ -93,7 +109,7 @@ class _CountryState extends State<Country> {
                           ),
                           Container(
                             child: Text(
-                              countryData['country'],
+                              widget.countryName,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 24.0,
@@ -117,11 +133,14 @@ class _CountryState extends State<Country> {
                       todayDeaths: todayDeaths == 0 ? "" : "$todayDeaths",
                     ),
                     SizedBox(height: 50),
-                    Text(
-                      "GRAPH HERE",
-                      style: TextStyle(fontSize: 60),
-                      softWrap: true,
-                    )
+                    countryData['message'] != null
+                        ? Text(
+                            "Graph Not Available",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 50),
+                            softWrap: true,
+                          )
+                        : Graph(),
                   ],
                 ),
               ),

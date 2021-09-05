@@ -31,6 +31,7 @@ class CountryPage extends StatelessWidget {
                             .format(countryData[index]['recovered']),
                         totalActive: util.indianNumberFormat
                             .format(countryData[index]['active']),
+                        countryName: countryData[index]['country'],
                       ),
                     ),
                   );
