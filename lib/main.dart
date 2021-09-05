@@ -18,6 +18,7 @@ void main() {
         brightness: Brightness.dark,
       ),
     ),
+    title: "Covid 19 Tracker by Maulik Shah",
     home: MyApp(),
   ));
 }
