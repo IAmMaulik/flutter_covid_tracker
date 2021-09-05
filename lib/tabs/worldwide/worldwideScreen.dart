@@ -92,6 +92,14 @@ class _WorldHomePageState extends State<WorldHomePage> {
                       countryData.length == 0
                           ? Center(child: CircularProgressIndicator())
                           : MostAffectedPanel(countryData: countryData),
+                      SizedBox(height: 25),
+                      Text(
+                        "Made By Maulik Shah",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       SizedBox(height: 35),
                     ],
                   ),
