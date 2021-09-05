@@ -1,6 +1,6 @@
+import 'package:covid_tracker/tabs/country_stats/components/countryStatsItem.dart';
 import 'package:covid_tracker/tabs/country_stats/screens/country.dart';
 import 'package:flutter/material.dart';
-import '../../../datasource.dart';
 import '../../../util.dart';
 
 var util = Util();
@@ -68,94 +68,9 @@ class Search extends SearchDelegate {
               ),
             );
           },
-          child: Container(
-            height: 130,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                color: Colors.grey[100]!,
-                blurRadius: 10,
-                offset: Offset(0, 10),
-              ),
-            ]),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        suggestionList[index]['country'],
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 3.5,
-                            color: primaryBlack,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Image.network(
-                          suggestionList[index]['countryInfo']['flag'],
-                          width: MediaQuery.of(context).size.width / 4.5,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 2.5),
-                        child: Text(
-                          "CONFIRMED: ${util.indianNumberFormat.format(suggestionList[index]['cases']).toString()}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 2.5),
-                        child: Text(
-                          "ACTIVE: ${util.indianNumberFormat.format(suggestionList[index]['active']).toString()}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 2.5),
-                        child: Text(
-                          "RECOVERED: ${util.indianNumberFormat.format(suggestionList[index]['recovered']).toString()}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 2.5),
-                        child: Text(
-                          "DEATHS: ${util.indianNumberFormat.format(suggestionList[index]['deaths']).toString()}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[800],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+          child: CountryStatsItem(
+            countryData: suggestionList,
+            index: index,
           ),
         );
       },

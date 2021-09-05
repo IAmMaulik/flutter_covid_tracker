@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:covid_tracker/datasource.dart';
+import 'package:covid_tracker/tabs/country_stats/screens/casesPanel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +12,7 @@ class Country extends StatefulWidget {
   final String totalRecovered;
   final String totalActive;
   final String totalDeaths;
+
   const Country({
     Key? key,
     required this.countryiso3,
@@ -43,6 +45,23 @@ class _CountryState extends State<Country> {
 
   @override
   Widget build(BuildContext context) {
+    getTodayValues(String type) {
+      // Takes today's values and subtracts yesterday' values to get daily cases
+      return countryData.length == 0
+          ? 0
+          : countryData['timeline']['$type'][countryData['timeline']['$type']
+                  .keys
+                  .elementAt(
+                      countryData['timeline']["$type"].keys.length - 1)] -
+              countryData['timeline']["$type"][countryData['timeline']['$type']
+                  .keys
+                  .elementAt(countryData['timeline']['$type'].keys.length - 2)];
+    }
+
+    int todayCases = getTodayValues("cases");
+    int todayRecovered = getTodayValues("recovered");
+    int todayDeaths = getTodayValues("deaths");
+
     return Scaffold(
       appBar: AppBar(
         title: countryData.length == 0
@@ -87,57 +106,15 @@ class _CountryState extends State<Country> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
-                              "TOTAL CONFIRMED: ${widget.totalCases}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
-                              "TOTAL ACTIVE: ${widget.totalActive}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
-                              "TOTAL ACTIVE: ${widget.totalRecovered}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            child: Text(
-                              "TOTAL DEATHS: ${widget.totalDeaths}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey[800],
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    CasesPanel(
+                      totalCases: widget.totalCases,
+                      todayCases: todayCases == 0 ? "" : "$todayCases",
+                      totalActive: widget.totalActive,
+                      totalRecovered: widget.totalRecovered,
+                      todayRecovered:
+                          todayRecovered == 0 ? "" : "$todayRecovered",
+                      totalDeaths: widget.totalDeaths,
+                      todayDeaths: todayDeaths == 0 ? "" : "$todayDeaths",
                     ),
                     SizedBox(height: 50),
                     Text(
