@@ -5,7 +5,7 @@ class StateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("STATE SCREEN"),
+        child: Text("(Coming Soon)"),
       ),
     );
   }
