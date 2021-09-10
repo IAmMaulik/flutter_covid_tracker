@@ -33,6 +33,7 @@ dependencies:
   intl: ^0.17.0
   syncfusion_flutter_charts: ^19.2.57
   syncfusion_flutter_maps: ^19.2.59-beta
+  connectivity_plus: ^1.1.0
 
 dev_dependencies:
   flutter_test:
