@@ -56,7 +56,10 @@ class Search extends SearchDelegate {
               context,
               MaterialPageRoute(
                 builder: (context) => Country(
-                  countryiso3: suggestionList[index]['countryInfo']['iso3'],
+                  countryiso3:
+                      suggestionList[index]['countryInfo']['iso3'] == null
+                          ? ""
+                          : suggestionList[index]['countryInfo']['iso3'],
                   flag: suggestionList[index]['countryInfo']['flag'],
                   totalCases: util.indianNumberFormat
                       .format(suggestionList[index]['cases']),

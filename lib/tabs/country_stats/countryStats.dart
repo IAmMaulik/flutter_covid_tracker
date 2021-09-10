@@ -21,7 +21,10 @@ class CountryPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Country(
-                        countryiso3: countryData[index]['countryInfo']['iso3'],
+                        countryiso3:
+                            countryData[index]['countryInfo']['iso3'] == null
+                                ? ""
+                                : countryData[index]['countryInfo']['iso3'],
                         flag: countryData[index]['countryInfo']['flag'],
                         totalCases: util.indianNumberFormat
                             .format(countryData[index]['cases']),

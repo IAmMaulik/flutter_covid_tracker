@@ -31,14 +31,24 @@ class Country extends StatefulWidget {
   _CountryState createState() => _CountryState();
 }
 
+int todayCases = 0;
+int todayRecovered = 0;
+int todayDeaths = 0;
+
 class _CountryState extends State<Country> {
   Map countryData = {};
   fetchCountryData() async {
-    http.Response response = await http.get(Uri.parse(
-        "https://disease.sh/v3/covid-19/historical/${widget.countryiso3}?lastdays=all"));
-    setState(() {
-      countryData = json.decode(response.body);
-    });
+    if (widget.countryiso3 != "") {
+      http.Response response = await http.get(Uri.parse(
+          "https://disease.sh/v3/covid-19/historical/${widget.countryiso3}?lastdays=all"));
+      setState(() {
+        countryData = json.decode(response.body);
+      });
+    } else {
+      setState(() {
+        countryData = {"isNotAvailable": true};
+      });
+    }
   }
 
   @override
@@ -51,7 +61,6 @@ class _CountryState extends State<Country> {
   Widget build(BuildContext context) {
     getTodayValues(String type) {
       // Takes today's values and subtracts yesterday' values to get daily cases
-
       if (countryData.length == 0 || countryData['message'] != null) {
         return 0;
       } else {
@@ -63,16 +72,11 @@ class _CountryState extends State<Country> {
             countryData['timeline']['$type']
                 .keys
                 .elementAt(countryData['timeline']['$type'].keys.length - 2)];
-
         return todayTotalCases - yesterdayTotalCases;
       }
     }
 
-    int todayCases = 0;
-    int todayRecovered = 0;
-    int todayDeaths = 0;
-
-    if (countryData.length != 0) {
+    if (countryData.length != 0 && widget.countryiso3 != "") {
       todayCases = getTodayValues("cases");
       todayRecovered = getTodayValues("recovered");
       todayDeaths = getTodayValues("deaths");
@@ -85,10 +89,10 @@ class _CountryState extends State<Country> {
             : Text(widget.countryName),
         centerTitle: true,
       ),
-      body: Center(
-        child: countryData.length == 0
-            ? Center(child: CircularProgressIndicator())
-            : Container(
+      body: countryData.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Container(
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -122,18 +126,27 @@ class _CountryState extends State<Country> {
                         ],
                       ),
                     ),
-                    CasesPanel(
-                      totalCases: widget.totalCases,
-                      todayCases: todayCases == 0 ? "" : "$todayCases",
-                      totalActive: widget.totalActive,
-                      totalRecovered: widget.totalRecovered,
-                      todayRecovered:
-                          todayRecovered == 0 ? "" : "$todayRecovered",
-                      totalDeaths: widget.totalDeaths,
-                      todayDeaths: todayDeaths == 0 ? "" : "$todayDeaths",
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: CasesPanel(
+                        totalCases: widget.totalCases,
+                        todayCases: todayCases == 0
+                            ? ""
+                            : util.indianNumberFormat.format(todayCases),
+                        totalActive: widget.totalActive,
+                        totalRecovered: widget.totalRecovered,
+                        todayRecovered: todayRecovered == 0
+                            ? ""
+                            : util.indianNumberFormat.format(todayRecovered),
+                        totalDeaths: widget.totalDeaths,
+                        todayDeaths: todayDeaths == 0
+                            ? ""
+                            : util.indianNumberFormat.format(todayDeaths),
+                      ),
                     ),
                     SizedBox(height: 50),
-                    countryData['message'] != null
+                    countryData['message'] != null ||
+                            countryData['isNotAvailable'] == true
                         ? Text(
                             "Graph Not Available",
                             textAlign: TextAlign.center,
@@ -144,7 +157,7 @@ class _CountryState extends State<Country> {
                   ],
                 ),
               ),
-      ),
+            ),
     );
   }
 }
