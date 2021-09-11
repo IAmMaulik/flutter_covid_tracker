@@ -37,7 +37,7 @@ int todayDeaths = 0;
 
 class _CountryState extends State<Country> {
   Map countryData = {};
-  fetchCountryData() async {
+  Future fetchCountryData() async {
     if (widget.countryiso3 != "") {
       http.Response response = await http.get(Uri.parse(
           "https://disease.sh/v3/covid-19/historical/${widget.countryiso3}?lastdays=all"));
@@ -91,70 +91,73 @@ class _CountryState extends State<Country> {
       ),
       body: countryData.length == 0
           ? Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.all(25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 5,
-                                color: primaryBlack,
+          : RefreshIndicator(
+              onRefresh: fetchCountryData,
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.all(25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 5,
+                                  color: primaryBlack,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                              borderRadius: BorderRadius.circular(5),
+                              child: Image.network(widget.flag),
+                              width: MediaQuery.of(context).size.width / 3,
                             ),
-                            child: Image.network(widget.flag),
-                            width: MediaQuery.of(context).size.width / 3,
-                          ),
-                          Container(
-                            child: Text(
-                              widget.countryName,
+                            Container(
+                              child: Text(
+                                widget.countryName,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                softWrap: true,
+                              ),
+                              width: MediaQuery.of(context).size.width / 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: CasesPanel(
+                          totalCases: widget.totalCases,
+                          todayCases: todayCases == 0
+                              ? ""
+                              : util.indianNumberFormat.format(todayCases),
+                          totalActive: widget.totalActive,
+                          totalRecovered: widget.totalRecovered,
+                          todayRecovered: todayRecovered == 0
+                              ? ""
+                              : util.indianNumberFormat.format(todayRecovered),
+                          totalDeaths: widget.totalDeaths,
+                          todayDeaths: todayDeaths == 0
+                              ? ""
+                              : util.indianNumberFormat.format(todayDeaths),
+                        ),
+                      ),
+                      SizedBox(height: 50),
+                      countryData['message'] != null ||
+                              countryData['isNotAvailable'] == true
+                          ? Text(
+                              "Graph Not Available",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 24.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(fontSize: 50),
                               softWrap: true,
-                            ),
-                            width: MediaQuery.of(context).size.width / 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: CasesPanel(
-                        totalCases: widget.totalCases,
-                        todayCases: todayCases == 0
-                            ? ""
-                            : util.indianNumberFormat.format(todayCases),
-                        totalActive: widget.totalActive,
-                        totalRecovered: widget.totalRecovered,
-                        todayRecovered: todayRecovered == 0
-                            ? ""
-                            : util.indianNumberFormat.format(todayRecovered),
-                        totalDeaths: widget.totalDeaths,
-                        todayDeaths: todayDeaths == 0
-                            ? ""
-                            : util.indianNumberFormat.format(todayDeaths),
-                      ),
-                    ),
-                    SizedBox(height: 50),
-                    countryData['message'] != null ||
-                            countryData['isNotAvailable'] == true
-                        ? Text(
-                            "Graph Not Available",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 50),
-                            softWrap: true,
-                          )
-                        : Graph(),
-                  ],
+                            )
+                          : Graph(),
+                    ],
+                  ),
                 ),
               ),
             ),

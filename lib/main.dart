@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:covid_tracker/datasource.dart';
-import 'package:covid_tracker/offline_message.dart';
 import 'package:covid_tracker/tabs/country_stats/components/search.dart';
 import 'package:covid_tracker/tabs/country_stats/countryStats.dart';
 import 'package:covid_tracker/tabs/info/infoPageHome.dart';
@@ -20,7 +18,7 @@ void main() {
         brightness: Brightness.dark,
       ),
     ),
-    title: "Covid 19 Tracker by Maulik Shah",
+    title: "COVID-19 Tracker by Maulik Shah",
     home: MyApp(),
   ));
 }
@@ -32,25 +30,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List countryData = [];
-  bool isOnline = false;
   Future fetchData() async {
     http.Response response =
         await http.get(Uri.parse("https://disease.sh/v3/covid-19/countries"));
     setState(() {
       countryData = json.decode(response.body);
     });
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      setState(() {
-        isOnline = true;
-      });
-    } else {
-      setState(() {
-        isOnline = false;
-      });
-    }
-    // print('$isOnline');
   }
 
   @override
@@ -76,15 +61,6 @@ class _MyAppState extends State<MyApp> {
       StateScreen(),
       InfoPage()
     ];
-    if (isOnline == false) {
-      _widgetList = [
-        // Show the "You are offline message" in every tab except FAQ tab
-        OfflineMessage(),
-        OfflineMessage(),
-        OfflineMessage(),
-        InfoPage(),
-      ];
-    }
     List<String> _appBarNames = [
       "Worldwide",
       "Country Stats",
