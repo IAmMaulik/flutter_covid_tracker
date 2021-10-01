@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 import 'package:covid_tracker/datasource.dart';
 import 'package:covid_tracker/tabs/country_stats/screens/casesPanel.dart';
 import 'package:covid_tracker/tabs/country_stats/screens/graph.dart';
@@ -155,7 +154,7 @@ class _CountryState extends State<Country> {
                               style: TextStyle(fontSize: 50),
                               softWrap: true,
                             )
-                          : Graph(),
+                          : Graph(data: countryData),
                     ],
                   ),
                 ),
