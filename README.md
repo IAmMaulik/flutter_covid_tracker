@@ -9,7 +9,9 @@ It displays the data in a beautiful UI.
 
 - Realtime Search
 - Live Data
-- Pie Chart
+- Graph
+- Individual Country Data
+- FAQs and Relevant Links
 - Pull to refresh
 
 ## Compile/Run Locally
@@ -39,8 +41,8 @@ Compile
 ```
 
 ## Few Screenshots of the App
-
-<img src="https://i.ibb.co/jV6hCp4/Hi-Shoot-20210812-170023.png" alt="Hi-Shoot-20210812-170023" border="0">
-<img src="https://i.ibb.co/sbjTy4H/Hi-Shoot-20210812-170040.png" alt="Hi-Shoot-20210812-170040" border="0">
-<img src="https://i.ibb.co/Z1VhH5D/Hi-Shoot-20210812-170104.png" alt="Hi-Shoot-20210812-170104" border="0">
-<img src="https://i.ibb.co/6vyn8qn/Hi-Shoot-20210812-170122.png" alt="Hi-Shoot-20210812-170122" border="0">
+<img src="https://i.ibb.co/Kh7QPp3/5.png" alt="5" border="0">
+<img src="https://i.ibb.co/fY3ZyvM/1.png" alt="1" border="0">
+<img src="https://i.ibb.co/54sL1sB/2.png" alt="2" border="0">
+<img src="https://i.ibb.co/jr60Bxm/3.png" alt="3" border="0">
+<img src="https://i.ibb.co/yyfskQy/4.png" alt="4" border="0">
