@@ -3,9 +3,9 @@ import 'package:covid_tracker/datasource.dart';
 import 'package:covid_tracker/tabs/country_stats/components/search.dart';
 import 'package:covid_tracker/tabs/country_stats/countryStats.dart';
 import 'package:covid_tracker/tabs/info/infoPageHome.dart';
-import 'package:covid_tracker/tabs/states/stateScreen.dart';
 import 'package:covid_tracker/tabs/worldwide/worldwideScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -15,7 +15,11 @@ void main() {
       fontFamily: "Circular",
       primaryColor: primaryBlack,
       appBarTheme: AppBarTheme(
-        brightness: Brightness.dark,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.dark,
+        ),
+        color: primaryBlack,
+        centerTitle: true,
       ),
     ),
     title: "COVID-19 Tracker by Maulik Shah",
@@ -58,13 +62,11 @@ class _MyAppState extends State<MyApp> {
     List<Widget> _widgetList = [
       WorldHomePage(),
       CountryPage(countryData: countryData),
-      StateScreen(),
       InfoPage()
     ];
     List<String> _appBarNames = [
       "Worldwide",
       "Country Stats",
-      "India",
       "INFORMATION (from WHO)"
     ];
 
@@ -100,10 +102,6 @@ class _MyAppState extends State<MyApp> {
           BottomNavigationBarItem(
             icon: Icon(Icons.flag),
             label: "Countries",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.apartment),
-            label: "India",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.question_answer),

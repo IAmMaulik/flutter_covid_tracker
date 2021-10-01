@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../datasource.dart';
 import '../../../util.dart';
 
 var util = Util();
@@ -23,10 +24,18 @@ class MostAffectedPanel extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Image.network(
-                  countryData[index]['countryInfo']['flag'],
-                  height: 50,
-                  width: 50,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 3.5,
+                      color: primaryBlack,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Image.network(
+                    countryData[index]['countryInfo']['flag'],
+                    width: 70,
+                  ),
                 ),
                 SizedBox(width: 30),
                 Text(
