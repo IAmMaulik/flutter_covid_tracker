@@ -41,4 +41,4 @@ Compile
 ```
 
 ## Few Screenshots of the App
-<img src="https://i.ibb.co/fY3ZyvM/1.png" alt="1" border="0" height=580><img src="https://i.ibb.co/54sL1sB/2.png" alt="2" border="0" height=580><img src="https://i.ibb.co/jr60Bxm/3.png" alt="3" border="0" height=580><img src="https://i.ibb.co/yyfskQy/4.png" alt="4" border="0" height=580><img src="https://i.ibb.co/Kh7QPp3/5.png" alt="5" border="0" height=580>
+<img src="https://i.ibb.co/fY3ZyvM/1.png" alt="1" border="0"><img src="https://i.ibb.co/54sL1sB/2.png" alt="2" border="0"><img src="https://i.ibb.co/jr60Bxm/3.png" alt="3" border="0"><img src="https://i.ibb.co/yyfskQy/4.png" alt="4" border="0"><img src="https://i.ibb.co/Kh7QPp3/5.png" alt="5" border="0">
