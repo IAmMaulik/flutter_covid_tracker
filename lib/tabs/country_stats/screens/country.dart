@@ -4,6 +4,7 @@ import 'package:covid_tracker/tabs/country_stats/screens/casesPanel.dart';
 import 'package:covid_tracker/tabs/country_stats/screens/graph.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class Country extends StatefulWidget {
@@ -87,6 +88,9 @@ class _CountryState extends State<Country> {
             ? Text("Loading...")
             : Text(widget.countryName),
         centerTitle: true,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.dark,
+        ),
       ),
       body: countryData.length == 0
           ? Center(child: CircularProgressIndicator())
